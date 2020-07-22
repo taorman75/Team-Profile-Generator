@@ -63,7 +63,7 @@ function menu() {
             type: "input",
             message: "Please enter the engineer's name.",
             name: "engineerName"
-            }
+            },
             {
             type: "input",
             message: "What is the engineer's id?",
@@ -93,7 +93,7 @@ function menu() {
             type: "input",
             message: "Please enter the intern's name.",
             name: "internName"
-            }
+            },
             {
             type: "input",
             message: "What is the intern's id?",
