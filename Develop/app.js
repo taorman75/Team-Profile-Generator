@@ -88,11 +88,15 @@ function createTeam() {
             } else if (responses.teamMember === "Intern") {
                 addIntern();
             } else if (responses.teamMember === "No More Members") {
-                console.log("Writing the team!")
+               // console.log("Writing the team!", teamMembers)
+               renderTeam();
             }   
         })
     };
 
+function renderTeam() {
+    fs.writeFileSync(outputPath, render(teamMembers), "utf-8")
+}
 
 function menu() {
     console.log("Please enter your team information.");
