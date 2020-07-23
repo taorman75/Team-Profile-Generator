@@ -11,7 +11,7 @@ class Employee {
 getName() {
     return this.name;
 }
-getid() {
+getId() {
     return this.id;
 }
 getEmail() {
@@ -22,5 +22,5 @@ getRole() {
 }
 }
 
-module.exports = Employee
+module.exports = Employee;
 

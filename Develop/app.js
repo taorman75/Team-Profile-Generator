@@ -13,51 +13,7 @@ const render = require("./lib/htmlRenderer");
 const teamMembers = [];
 const idArray = [];
 
-function menu() {
-    function createManager() {
-        console.log("Please enter your team information.");
-        inquirer.prompt([
-            {
-             type: "input",
-             message: "Please enter your manager's name." ,
-             name: "managerName",
-            //  validate:  
-            }, 
-            {
-            type: "input",
-            message: "What is the manager's id?",
-            name: "managerID"
-            },
-            {
-            type: "input",
-            message: "What is the manager's email address?",
-            name: "managerEmail"
-            },
-            {
-            type: "input",
-            message: "What is the manager's office number?",
-            name: "mgrOffNum"
-            }
-        ]).then(responses => {
-            const manager = new Manager(responses.managerName, responses.managerID, responses.managerEmail, responses.mgrOffNum);
-            teamMembers.push(manager);
-            idArray.push(responses.managerID);
-            createTeam();
-        })
-    };
-
-    // function createTeam() {
-    //     inquirer.prompt([
-    //         {
-    //           type: "list",
-    //           message: "What team member would you like to add?",
-    //           name: "teamMember",
-    //           choices: ["Engineer", "Intern", "No More Members"]
-    //         }
-    //     ])
-    // }
-
-    function addEngineer() {
+function addEngineer() {
         inquirer.prompt([
             {
             type: "input",
@@ -87,7 +43,7 @@ function menu() {
         })
     };
 
-    function addIntern() {
+ function addIntern() {
         inquirer.prompt([
             {
             type: "input",
@@ -117,12 +73,63 @@ function menu() {
         })
     };
 
-    // function addNone() {
+function createTeam() {
+        inquirer.prompt([
+            {
+              type: "list",
+              message: "What team member would you like to add?",
+              name: "teamMember",
+              choices: ["Engineer", "Intern", "No More Members"]
+            }
+        ]).then(responses => {
+            //{ teamMember: 'Engineer' }
+            if (responses.teamMember === "Engineer") {
+                addEngineer();
+            } else if (responses.teamMember === "Intern") {
+                addIntern();
+            } else if (responses.teamMember === "No More Members") {
+                console.log("Writing the team!")
+            }   
+        })
+    };
 
-    // }
 
-}
+function menu() {
+    console.log("Please enter your team information.");
+    
+        inquirer.prompt([
+            {
+             type: "input",
+             message: "Please enter your manager's name." ,
+             name: "managerName",
+            //  validate:  
+            }, 
+            {
+            type: "input",
+            message: "What is the manager's id?",
+            name: "managerID"
+            },
+            {
+            type: "input",
+            message: "What is the manager's email address?",
+            name: "managerEmail"
+            },
+            {
+            type: "input",
+            message: "What is the manager's office number?",
+            name: "mgrOffNum"
+            }
+        ]).then(responses => {
+            const manager = new Manager(responses.managerName, responses.managerID, responses.managerEmail, responses.mgrOffNum);
+            teamMembers.push(manager);
+            idArray.push(responses.managerID);
+            createTeam();
+        })
+    
 
+};
+
+menu();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
